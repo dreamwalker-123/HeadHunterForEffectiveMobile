@@ -57,6 +57,7 @@ class SearchViewModel @Inject constructor(
 
     fun deleteFavorite(vacancy: Vacancy) {
         viewModelScope.launch {
+            Log.e("SearchViewModel", "метод deleteFavorite")
             favoriteRepository.deleteFavorite(vacancy)
         }
     }

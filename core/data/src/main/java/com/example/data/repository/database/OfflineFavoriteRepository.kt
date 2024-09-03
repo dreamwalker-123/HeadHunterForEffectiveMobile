@@ -28,6 +28,7 @@ class OfflineFavoriteRepository @Inject constructor(
     }
 
     override suspend fun deleteFavorite(vacancy: Vacancy) {
+        Log.e("OfflineFavoriteRepository", "метод deleteFavorite")
         favoriteDao.deleteFavorite(vacancy)
     }
 }

@@ -23,6 +23,8 @@ class CommonRepository @Inject constructor(
                 }
             }
         }
-        return kotlin.runCatching { networkRepository.getAllData() }
+        return kotlin.runCatching {
+            networkRepository.getAllData()
+        }
     }
 }
