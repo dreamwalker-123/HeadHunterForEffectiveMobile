@@ -14,7 +14,7 @@ object Routes {
         title = "Избранное",
         selectedIcon = com.example.designsystem.R.drawable.favorite_clicked,
         unselectedIcon = com.example.designsystem.R.drawable.favorite_default,
-        badgeAmount = 7
+        badgeAmount = 1
     )
     val responsesTab = TabBarItem(
         title = "Отклики",

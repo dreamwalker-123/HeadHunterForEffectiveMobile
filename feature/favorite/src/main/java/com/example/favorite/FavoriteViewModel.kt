@@ -1,5 +1,6 @@
 package com.example.favorite
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.mappers.reverseVacancyMapper
@@ -32,7 +33,9 @@ class FavoriteViewModel @Inject constructor(
             offlineFavoriteRepository.getAllFavorite().collect {
                 try {
                     _allFavoriteUiState.value = FavoriteUiState.Success(it)
+                    Log.e("FavoriteViewModel","correct")
                 } catch(e: Exception) {
+                    Log.e("FavoriteViewModel","exception")
                     _allFavoriteUiState.value = FavoriteUiState.Error
                 }
             }
@@ -41,18 +44,21 @@ class FavoriteViewModel @Inject constructor(
 
     fun insertFavorite(vacancy: Vacancy) {
         viewModelScope.launch {
+            Log.e("FavoriteViewModel","insertFavorite")
             offlineFavoriteRepository.insertFavorite(vacancy)
         }
     }
 
     fun deleteFavorite(vacancy: Vacancy) {
         viewModelScope.launch {
+            Log.e("FavoriteViewModel","deleteFavorite")
             offlineFavoriteRepository.deleteFavorite(vacancy)
         }
     }
 
     fun insertVacancy(vacancy: Vacancy) {
         viewModelScope.launch {
+            Log.e("FavoriteViewModel","insertVacancy")
             databaseRepository.insertVacancy(vacancy)
         }
     }

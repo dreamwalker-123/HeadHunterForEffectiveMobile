@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -18,34 +17,31 @@ import com.example.data.mappers.reverseVacancyMapper
 import com.example.data.mappers.vacancyMapper
 import com.example.database.entities.Address
 import com.example.database.entities.Experience
-import com.example.database.entities.Favorite
 import com.example.database.entities.Salary
 import com.example.database.entities.Vacancy
 import com.example.designsystem.MyColors
 import com.example.designsystem.MyTypes
 import com.example.designsystem.VacancyCard
-import com.example.network.model.VacancyFromNetwork
+import androidx.compose.foundation.lazy.items
 
 @Composable
 fun FavoriteRoute(
     onVacancyClick: (String) -> Unit,
     viewModel: FavoriteViewModel = hiltViewModel(),
 ) {
-    val allFavorite by viewModel.allFavoriteUiState.collectAsState()
-    if (allFavorite is FavoriteUiState.Success) {
-        FavoriteScreen(
-            allFavorite = (allFavorite as FavoriteUiState.Success).allFavorite,
-            onVacancyClick = onVacancyClick,
-            insertVacancy = viewModel::insertVacancy,
-            insertFavorite = viewModel::insertFavorite,
-            deleteFavorite = viewModel::deleteFavorite,
-        )
-    }
+    val favoriteUiState by viewModel.allFavoriteUiState.collectAsState()
+    FavoriteScreen(
+        favoriteUiState = favoriteUiState,
+        onVacancyClick = onVacancyClick,
+        insertVacancy = viewModel::insertVacancy,
+        insertFavorite = viewModel::insertFavorite,
+        deleteFavorite = viewModel::deleteFavorite,
+    )
 }
 
 @Composable
 fun FavoriteScreen(
-    allFavorite: List<Vacancy>,
+    favoriteUiState: FavoriteUiState,
     onVacancyClick: (String) -> Unit,
     insertVacancy: (Vacancy) -> Unit,
     insertFavorite: (Vacancy) -> Unit,
@@ -60,20 +56,24 @@ fun FavoriteScreen(
             color = MyColors.white,
             style = MyTypes.title1,
             modifier = Modifier.padding(top = 40.dp))
-        Text(text = "${allFavorite.size} вакансии",
-            color = MyColors.grey3,
-            style = MyTypes.title4,
-            modifier = Modifier.padding(top = 20.dp, bottom = 10.dp))
-        LazyColumn(modifier = Modifier.padding(top = 10.dp)) {
-            items(allFavorite) { item ->
-                val vacancy = reverseVacancyMapper(item)
-                VacancyCard(
-                    vacancy = vacancy,
-                    onVacancyClick = { onVacancyClick(vacancy.id!!) },
-                    insertVacancy = { insertVacancy(vacancyMapper(vacancy))},
-                    insertFavorite = { insertFavorite(vacancyMapper(vacancy)) },
-                    deleteFavorite = { deleteFavorite(vacancyMapper(vacancy)) },
-                )
+
+        if (favoriteUiState is FavoriteUiState.Success) {
+            val allFavorite = favoriteUiState.allFavorite
+            Text(text = "${allFavorite.size} вакансии",
+                color = MyColors.grey3,
+                style = MyTypes.title4,
+                modifier = Modifier.padding(top = 20.dp, bottom = 10.dp))
+            LazyColumn(modifier = Modifier.padding(top = 10.dp)) {
+                items(allFavorite) { item ->
+                    val vacancy = reverseVacancyMapper(item)
+                    VacancyCard(
+                        vacancy = vacancy,
+                        onVacancyClick = { onVacancyClick(vacancy.id!!) },
+                        insertVacancy = { insertVacancy(vacancyMapper(vacancy))},
+                        insertFavorite = { insertFavorite(vacancyMapper(vacancy)) },
+                        deleteFavorite = { deleteFavorite(vacancyMapper(vacancy)) },
+                    )
+                }
             }
         }
     }
@@ -149,7 +149,7 @@ fun PreviewSearchScreen() {
         )
     )
     FavoriteScreen(
-        allFavorite = vacancies,
+        favoriteUiState = FavoriteUiState.Success(vacancies),
         onVacancyClick = {},
         insertVacancy = {},
         insertFavorite = {},

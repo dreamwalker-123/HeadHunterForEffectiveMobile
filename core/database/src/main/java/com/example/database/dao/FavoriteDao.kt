@@ -12,9 +12,16 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FavoriteDao {
-    // прочитать как правильно делать INSERT и UPDATE, создать методы
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(entity = Favorite::class, onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFavorite(vacancy: Vacancy)
+
+//    @Query(
+//        value = """
+//            INSERT INTO FavoriteTable
+//            VALUES (:vacancy)
+//        """
+//    )
+//    suspend fun insertFavorite(vacancy: Vacancy)
 
     @Query(
         value = """

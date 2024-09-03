@@ -63,7 +63,7 @@ fun SearchRoute(
         dataUiState = dataUiState,
         onVacancyClick = onVacancyClick,
         insertVacancy = { viewModel.insertVacancy(it) },
-        insertFavorite = { viewModel.insertVacancy(it) },
+        insertFavorite = { viewModel.insertFavorite(it) },
         deleteFavorite = { viewModel.deleteFavorite(it) },
     )
 }// bator@gmail.com
