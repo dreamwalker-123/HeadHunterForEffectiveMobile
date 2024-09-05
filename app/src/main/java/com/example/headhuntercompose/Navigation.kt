@@ -64,6 +64,7 @@ fun Navigation(
                 TabView(
                     tabBarItems = tabBarItems,
                     navigateToBarItem = { navController.navigate(it) },
+                    // FIXME: нет отображения, надо прокинуть в навигацию нетворк и датабейс репозитории, чтобы получить данные
                     selectedTabIndex = selectedTabIndex,
                     changeSelectedTabIndex = { selectedTabIndex = it })
             }
