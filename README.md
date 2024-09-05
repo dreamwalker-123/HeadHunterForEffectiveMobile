@@ -3,16 +3,16 @@
 Использовал рекомендуемый стек технологий, но для верстки использовал Jetpack Compose.
 
 Стек:
-1.Kotlin 
-2.Корутины (но если на RX сможете, тоже отлично)
-3.﻿Flow
-4﻿.Dagger Hilt
-5.MVVM
-6.Jetpack Compose
-7.Clean Architecture
-8.Многомодульность
-9.Room
-10.Retrofit
+1. Kotlin 
+2. Корутины (но если на RX сможете, тоже отлично)
+3.﻿ Flow
+4﻿. Dagger Hilt
+5. MVVM
+6. Jetpack Compose
+7. Clean Architecture
+8. Многомодульность
+9. Room
+10. Retrofit
 
 Взял тестовое 21 августа, но приступить получилось только 24 августа.
 
