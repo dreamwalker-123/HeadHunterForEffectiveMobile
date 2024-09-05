@@ -69,7 +69,7 @@ fun Navigation(
             }
         }) { paddingValues ->
         Column(modifier = Modifier.padding(paddingValues)) { // entryScreen
-            NavHost(navController = navController, startDestination = searchTab.title) {
+            NavHost(navController = navController, startDestination = entryScreen) {
                 composable(route = entryScreen) {
                     EntryRoute(
                         onMainScreenClick = {
