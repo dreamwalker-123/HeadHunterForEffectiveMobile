@@ -1,8 +1,11 @@
 package com.example.mainorsearch
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,13 +36,14 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat.startActivity
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.data.mappers.correctEndingOfANoun
 import com.example.data.mappers.vacancyMapper
-import com.example.database.entities.Favorite
 import com.example.database.entities.Vacancy
 import com.example.designsystem.MyColors
 import com.example.designsystem.MyTypes
@@ -137,11 +141,18 @@ fun SearchScreen(
                         LazyRow(modifier = Modifier.padding(start = 4.dp)) {
                             val offers = dataUiState.data.offers
                             items(offers) { offer ->
-                                // FIXME: при клике переход по ссылке из поля link
+                                val mContext = LocalContext.current
                                 Card(modifier = Modifier
                                     .padding(start = 8.dp)
                                     .width(150.dp)
-                                    .height(110.dp),
+                                    .height(110.dp)
+                                    .clickable {
+                                        if (offer.link != null) {
+                                            val link: Uri = Uri.parse(offer.link)
+                                            val intent = Intent(Intent.ACTION_VIEW, link)
+                                            mContext.startActivity(intent)
+                                        }
+                                    },
                                     shape = RoundedCornerShape(8.dp),
                                     colors = CardDefaults.cardColors().copy(containerColor = MyColors.grey2)
                                 ) {
