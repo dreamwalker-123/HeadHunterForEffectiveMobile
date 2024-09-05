@@ -101,7 +101,7 @@ fun SearchScreen(
                                 .padding(start = 3.dp),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                IconButton(onClick = { if (blueButton == false) blueButton = true }) {
+                                IconButton(onClick = { if (!blueButton) blueButton = true }) {
                                     Icon(
                                         painter = painterResource(id = if (blueButton) com.example.designsystem.R.drawable.arrow_left else com.example.designsystem.R.drawable.search_black),
                                         contentDescription = "Email",
@@ -243,7 +243,7 @@ fun SearchScreen(
                                         val size = dataUiState.data.vacancies.size
                                         val str = correctEndingOfANoun(size)
                                         Text(
-                                            text = "Еще ${dataUiState.data.vacancies.size} $str",
+                                            text = "Еще ${dataUiState.data.vacancies.size - 3} $str",
                                             color = MyColors.white, style = MyTypes.title3,
                                             modifier = Modifier.padding(horizontal = 20.dp)
                                         )

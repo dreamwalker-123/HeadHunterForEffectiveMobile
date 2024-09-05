@@ -1,7 +1,9 @@
 package com.example.network.retrofit
 
+import android.util.Log
 import com.example.network.HhApi
 import com.example.network.model.NetworkData
+import kotlinx.coroutines.flow.Flow
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -34,6 +36,7 @@ class RetrofitClient @Inject constructor(
         .create(HhApi::class.java)
 
     override suspend fun getAllData(): NetworkData {
+        Log.e("NetworkRepository", "getAllData")
         return retrofit.getAllData()
     }
 }

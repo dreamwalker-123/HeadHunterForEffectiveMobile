@@ -1,8 +1,10 @@
 package com.example.vacancy
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.data.repository.database.OfflineFavoriteRepository
 import com.example.data.repository.database.OfflineVacancyRepository
 import com.example.database.entities.Vacancy
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,6 +18,7 @@ import javax.inject.Inject
 class VacancyViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val databaseRepository: OfflineVacancyRepository,
+    private val favoriteRepository: OfflineFavoriteRepository
 ): ViewModel() {
     // получение записанного аргумента из Bundle при помощи savedStateHandle
     private val idVacancy: String = checkNotNull(savedStateHandle[VACANCY])
@@ -39,6 +42,20 @@ class VacancyViewModel @Inject constructor(
     fun deleteVacancy() {
         viewModelScope.launch {
             databaseRepository.deleteVacancy()
+        }
+    }
+
+    fun insertFavorite(vacancy: Vacancy) {
+        viewModelScope.launch {
+            Log.e("SearchViewModel", "метод insertFavorite")
+            favoriteRepository.insertFavorite(vacancy)
+        }
+    }
+
+    fun deleteFavorite(vacancy: Vacancy) {
+        viewModelScope.launch {
+            Log.e("SearchViewModel", "метод deleteFavorite")
+            favoriteRepository.deleteFavorite(vacancy)
         }
     }
 }

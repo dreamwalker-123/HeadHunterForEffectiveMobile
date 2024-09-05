@@ -1,5 +1,6 @@
 package com.example.network.model
 
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 
 @Serializable

@@ -31,6 +31,12 @@ interface FavoriteDao {
     )
     fun getAllFavorite(): Flow<List<Vacancy>>
 
-    @Delete
-    suspend fun deleteFavorite(vacancy: Vacancy)
+//    @Delete
+//    suspend fun deleteFavorite(vacancy: Vacancy)
+
+    @Query(value = """
+        DELETE FROM FavoriteTable
+        WHERE id = :id;
+    """)
+    suspend fun deleteFavorite(id: String)
 }

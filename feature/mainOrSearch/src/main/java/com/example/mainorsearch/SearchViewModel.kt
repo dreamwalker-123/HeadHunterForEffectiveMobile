@@ -31,13 +31,10 @@ class SearchViewModel @Inject constructor(
 
     private fun getAllNetworkData() {
         viewModelScope.launch {
-            networkDataSource.getAllData()
-                .onSuccess {
-                    _dataUiState.value = DataUiState.Success(it)
-                }
-                .onFailure {
-                    _dataUiState.value = DataUiState.Error
-                }
+            networkDataSource.insertOnceAfterNetworkCall()
+            networkDataSource.getAllData().collect {
+                _dataUiState.value = DataUiState.Success(it)
+            }
         }
     }
 

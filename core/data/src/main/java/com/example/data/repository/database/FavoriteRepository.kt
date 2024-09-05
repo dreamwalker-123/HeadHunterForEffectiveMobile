@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface FavoriteRepository {
     /**
-     * Получить все Favorite из БД с их ID и их isFavorite: Boolean
+     * Получить все избранные вакансии из БД
      */
     fun getAllFavorite(): Flow<List<Vacancy>>
 

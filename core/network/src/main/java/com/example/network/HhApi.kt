@@ -1,6 +1,7 @@
 package com.example.network
 
 import com.example.network.model.NetworkData
+import kotlinx.coroutines.flow.Flow
 import retrofit2.http.GET
 
 interface HhApi {

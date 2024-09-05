@@ -18,17 +18,17 @@ class OfflineFavoriteRepository @Inject constructor(
     private val favoriteDao: FavoriteDao,
 ): FavoriteRepository {
     override fun getAllFavorite(): Flow<List<Vacancy>> {
-        Log.e("OfflineFavoriteRepository", "вызов flow")
+        Log.e("OfflineFavoriteRepository", "getAllFavorite")
         return favoriteDao.getAllFavorite()
     }
 
     override suspend fun insertFavorite(vacancy: Vacancy) {
-        Log.e("OfflineFavoriteRepository", "метод insertFavorite")
-        favoriteDao.insertFavorite(vacancy)
+        Log.e("OfflineFavoriteRepository", "insertFavorite")
+        favoriteDao.insertFavorite(vacancy.copy(isFavorite = true))
     }
 
     override suspend fun deleteFavorite(vacancy: Vacancy) {
-        Log.e("OfflineFavoriteRepository", "метод deleteFavorite")
-        favoriteDao.deleteFavorite(vacancy)
+        Log.e("OfflineFavoriteRepository", "deleteFavorite")
+        favoriteDao.deleteFavorite(vacancy.id)
     }
 }

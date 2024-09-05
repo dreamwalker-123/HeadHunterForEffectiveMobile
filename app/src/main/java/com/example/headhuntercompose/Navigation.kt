@@ -68,8 +68,8 @@ fun Navigation(
                     changeSelectedTabIndex = { selectedTabIndex = it })
             }
         }) { paddingValues ->
-        Column(modifier = Modifier.padding(paddingValues)) {
-            NavHost(navController = navController, startDestination = entryScreen) {
+        Column(modifier = Modifier.padding(paddingValues)) { // entryScreen
+            NavHost(navController = navController, startDestination = searchTab.title) {
                 composable(route = entryScreen) {
                     EntryRoute(
                         onMainScreenClick = {
