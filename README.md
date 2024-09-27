@@ -5,7 +5,7 @@
 Стек:
 1. Kotlin 
 2. Coroutines
-3.﻿ Flow
+3. Flow
 4﻿. Dagger Hilt
 5. MVVM
 6. Jetpack Compose
