@@ -4,7 +4,7 @@
 
 Стек:
 1. Kotlin 
-2. Корутины
+2. Coroutines
 3.﻿ Flow
 4﻿. Dagger Hilt
 5. MVVM
