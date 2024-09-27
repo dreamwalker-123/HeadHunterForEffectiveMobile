@@ -14,7 +14,7 @@
 9. Room
 10. Retrofit
 
-![Screenshot_1 (1)](https://github.com/user-attachments/assets/4e7a4917-b919-4041-958a-1628d12844e3)
+![Screenshot_1 (1)](https://github.com/user-attachments/assets/4e7a4917-b919-4041-958a-1628d12844e3 width="200" height="200")
 
 
 Взял тестовое 21 августа, но приступить получилось только 24 августа.
