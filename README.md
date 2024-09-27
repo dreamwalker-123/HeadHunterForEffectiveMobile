@@ -6,7 +6,7 @@
 1. Kotlin 
 2. Coroutines
 3. Flow
-4﻿. Dagger Hilt
+4. Dagger Hilt
 5. MVVM
 6. Jetpack Compose
 7. Clean Architecture
